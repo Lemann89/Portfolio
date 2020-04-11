@@ -344,17 +344,19 @@
             data-delay=".5s"
             id="contact-form"
           >
-            <input placeholder="Name" type="text" name="name" required />
+            <input placeholder="Name" type="text" name="name" class="name" required />
             <input
               placeholder="Enter email"
               type="email"
               name="email"
               required
+              class="email"
             />
             <textarea
               placeholder="Your Message"
               type="text"
               name="message"
+              class="message"
             ></textarea>
             <div id="success">
               <div>
@@ -450,6 +452,7 @@
       <img src="img/slides/walker-1.jpg" />
       <img src="img/slides/walker-2.jpg" />
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
   </body>
 </html>
 
