@@ -180,23 +180,39 @@ $(function() {
   }, 10);
 
   // CONTACT FORM
-  $('#contact-form').submit(function(e) {
-    e.preventDefault();
+  const form = document.querySelector('#contact-form');
+  const name = document.querySelector('.name');
+  const email = document.querySelector('.email');
+  const message = document.querySelector('.message');
 
-    $.ajax({
-      url: 'https://formspree.io/mattwilliams85@gmail.com',
-      method: 'POST',
-      data: { message: $('form').serialize() },
-      dataType: 'json'
-    }).done(function(response) {
-      $('#success').addClass('expand');
-      $('#contact-form')
-        .find('input[type=text], input[type=email], textarea')
-        .val('');
-    });
-  });
+const sendMessage = e => {
+  e.preventDefault();
 
-  $('#close').click(function() {
-    $('#success').removeClass('expand');
-  });
+  const token = '1193428223:AAGzULF0KsF-IOhIBWVMufkkaQPCyMZRZlU';
+  const id = '-409226963';
+
+  let text = `<b>Portfolio</b>\t
+  Name: ${name.value}\t
+  Email: ${email.value}\t
+  Message: ${message.value}\t`;
+
+  let url = encodeURI(`https://api.telegram.org/bot${token}/sendMessage?chat_id=${id}&parse_mode=html&text=${text}`);
+
+  let xhr = new XMLHttpRequest();
+  xhr.open("GET", url, true);
+  xhr.send();
+
+  if(sendMessage){
+    Swal.fire(
+      'Success',
+      'Message was be sent!',
+      'success'
+    )
+  } 
+}
+
+
+form.addEventListener('submit', sendMessage);
+
+
 });
